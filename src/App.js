@@ -1,7 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+// import store from "./store";
+import withStore from "./store/useStore";
+// import { observer } from "mobx-react";
 
-function App() {
+// const TimerView = observer(({ store }) => (
+//   <span>Seconds passed: {store.timer}</span>
+// ));
+
+import Timer from "./Timer";
+
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
@@ -9,17 +18,13 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* <TimerView store={store} /> */}
+        <Timer />
+
+        <button onClick={() => props.store.increaseTimer()}>click</button>
       </header>
     </div>
   );
 }
 
-export default App;
+export default withStore(App);
